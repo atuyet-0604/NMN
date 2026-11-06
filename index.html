@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Bài trình bày Nhập môn ngành Công nghệ Thông tin - Chương 4 và Chương 5">
+<title>Nhập môn ngành CNTT | Chương 4 & 5</title>
+<style>
+:root{
+  --navy:#10243d; --navy2:#183653; --blue:#2878a8; --teal:#2b8c89;
+  --gold:#d79a42; --ink:#243447; --muted:#617286; --paper:#f4f7fa;
+  --line:#dce5ed; --white:#fff; --softblue:#eaf3f8; --softgold:#fbf3e7;
+  --shadow:0 12px 32px rgba(16,36,61,.09); --radius:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:92px}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.65}
+a{color:inherit}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(16,36,61,.96);backdrop-filter:blur(12px);color:#fff;border-bottom:1px solid rgba(255,255,255,.12)}
+.nav{max-width:1160px;margin:auto;padding:12px 22px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{font-weight:800;letter-spacing:.04em;font-size:.9rem;white-space:nowrap}
+.navlinks{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}
+.navlinks a{text-decoration:none;color:#dce8f2;font-size:.88rem;padding:7px 11px;border-radius:999px}
+.navlinks a:hover{background:rgba(255,255,255,.13);color:#fff}
+.hero{background:linear-gradient(125deg,#10243d 0%,#173e5c 60%,#216b79 100%);color:#fff;padding:76px 22px 66px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:420px;height:420px;border:1px solid rgba(255,255,255,.12);border-radius:50%;right:-100px;top:-190px;box-shadow:0 0 0 42px rgba(255,255,255,.035),0 0 0 84px rgba(255,255,255,.025)}
+.hero-inner{max-width:1080px;margin:auto;position:relative;z-index:1}
+.eyebrow{text-transform:uppercase;letter-spacing:.18em;font-size:.76rem;font-weight:800;color:#f1c47d}
+h1{font-size:clamp(2.1rem,5vw,4rem);line-height:1.12;margin:14px 0 16px;max-width:850px}
+.hero p{font-size:1.08rem;color:#d9e5ef;max-width:760px;margin:0}
+.hero-meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.pill{border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.09);padding:7px 12px;border-radius:999px;font-size:.83rem;color:#eef5fa}
+.container{max-width:1080px;margin:auto;padding:0 22px}
+.intro-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;margin-top:-28px;position:relative;z-index:2}
+.panel,.card,.case,.trend{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.panel{padding:23px}
+.panel h2{font-size:1.1rem;margin:0 0 8px;color:var(--navy)}
+.panel p{margin:0;color:var(--muted)}
+.panel.dark{background:var(--navy);color:#fff;border-color:var(--navy)}
+.panel.dark h2{color:#fff}.panel.dark p{color:#d7e2ed}
+.statline{display:flex;gap:12px;flex-wrap:wrap;margin-top:15px}
+.stat{background:var(--softblue);border-radius:12px;padding:10px 13px;flex:1;min-width:115px}
+.stat strong{display:block;font-size:1.3rem;color:var(--blue)}
+.stat span{font-size:.8rem;color:var(--muted)}
+main{padding:54px 0 70px}
+.section{margin:0 0 62px}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:22px}
+.kicker{font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:var(--teal)}
+h2.section-title{font-size:clamp(1.65rem,3vw,2.35rem);line-height:1.2;color:var(--navy);margin:5px 0 0}
+.section-desc{max-width:440px;color:var(--muted);margin:0;font-size:.95rem}
+.topic-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.card{padding:22px;box-shadow:0 6px 20px rgba(16,36,61,.045)}
+.card-number{width:34px;height:34px;display:grid;place-items:center;border-radius:10px;background:var(--softblue);color:var(--blue);font-weight:900;margin-bottom:13px}
+.card h3{margin:0 0 9px;color:var(--navy);font-size:1.08rem}
+.card p{margin:0 0 9px;color:var(--muted)}
+.card ul{margin:8px 0 0;padding-left:19px}
+.card li{margin:5px 0}
+.note{padding:14px 16px;background:var(--softgold);border-left:4px solid var(--gold);border-radius:0 12px 12px 0;margin-top:14px;color:#624a2b}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:#fff}
+table{border-collapse:collapse;width:100%;min-width:520px}
+th,td{text-align:left;padding:13px 15px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:#edf3f7;color:var(--navy);font-size:.88rem}
+td{font-size:.93rem}
+tr:last-child td{border-bottom:0}
+.case{padding:25px;margin-top:18px;box-shadow:none}
+.case-label{display:inline-block;background:var(--softgold);color:#8a5b1e;border-radius:999px;padding:5px 10px;font-size:.74rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase}
+.case h3{color:var(--navy);font-size:1.35rem;margin:12px 0 8px}
+.case p{color:var(--muted)}
+.case-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+.subcard{background:#f7f9fb;border:1px solid var(--line);border-radius:14px;padding:17px}
+.subcard h4{margin:0 0 10px;color:var(--navy)}
+.steps{counter-reset:step;list-style:none;padding:0;margin:0}
+.steps li{counter-increment:step;position:relative;padding:0 0 12px 37px}
+.steps li:before{content:counter(step);position:absolute;left:0;top:0;width:25px;height:25px;border-radius:50%;display:grid;place-items:center;background:var(--navy);color:white;font-size:.78rem;font-weight:800}
+.promptbox{background:#10243d;color:#eaf2f8;padding:20px;border-radius:15px;white-space:pre-line;font-size:.93rem}
+.promptbox strong{color:#f2c47c}
+.copy-btn{border:0;background:var(--teal);color:white;padding:9px 14px;border-radius:9px;font-weight:800;cursor:pointer;margin-top:12px}
+.copy-btn:hover{filter:brightness(1.08)}
+.trend-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.trend{padding:20px;box-shadow:none}
+.trend .year{font-size:.75rem;letter-spacing:.13em;text-transform:uppercase;font-weight:900;color:var(--teal)}
+.trend h3{margin:7px 0;color:var(--navy);font-size:1.1rem}
+.trend p{margin:0;color:var(--muted);font-size:.93rem}
+.takeaway{background:linear-gradient(120deg,#eaf3f8,#edf6f3);border:1px solid #d7e7e8;border-radius:var(--radius);padding:25px;margin-top:22px}
+.takeaway h3{margin:0 0 8px;color:var(--navy)}
+.takeaway p{margin:0;color:#43596d}
+.source{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font-size:.86rem}
+footer{background:var(--navy);color:#dce7ef;padding:28px 22px;text-align:center;font-size:.86rem}
+footer strong{color:#fff}
+@media(max-width:760px){
+ .nav{align-items:flex-start;flex-direction:column}.navlinks{justify-content:flex-start}
+ .hero{padding:55px 0 54px}.intro-grid,.topic-grid,.case-grid,.trend-grid{grid-template-columns:1fr}
+ .section-head{display:block}.section-desc{margin-top:10px}
+ .container{padding:0 16px}.panel{padding:19px}
+}
+@media print{
+ .topbar{position:static}.hero{padding:35px 20px}.intro-grid{margin-top:15px}
+ body{background:#fff}.panel,.card,.case,.trend{box-shadow:none;break-inside:avoid}
+ .navlinks{display:none}.copy-btn{display:none}
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <nav class="nav" aria-label="Điều hướng chính">
+    <div class="brand">NHẬP MÔN CNTT</div>
+    <div class="navlinks">
+      <a href="#tongquan">Tổng quan</a><a href="#chuong4">Chương 4</a><a href="#case4">Case 4</a>
+      <a href="#chuong5">Chương 5</a><a href="#case5">Case 5</a><a href="#xuhuong">Xu hướng</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Bài tập nhập môn ngành · Công nghệ thông tin</div>
+    <h1>Kỹ năng học đại học &<br>AI tạo sinh trong học tập</h1>
+    <p>Trình bày nội dung Chương 4 và Chương 5: từ phương pháp học tập, tư duy lập trình viên chuyên nghiệp đến cách sử dụng AI an toàn và viết prompt hiệu quả.</p>
+    <div class="hero-meta">
+      <span class="pill">Chương 4 · Học đại học & tư duy nghề nghiệp</span>
+      <span class="pill">Chương 5 · AI tạo sinh & kỹ thuật viết prompt</span>
+    </div>
+  </div>
+</section>
+
+<div class="container" id="tongquan">
+  <div class="intro-grid">
+    <div class="panel">
+      <h2>Mục tiêu bài trình bày</h2>
+      <p>Hệ thống hóa kiến thức trọng tâm trong giáo trình, vận dụng vào tình huống làm việc nhóm và đề xuất cách sử dụng công nghệ có trách nhiệm.</p>
+      <div class="statline">
+        <div class="stat"><strong>2</strong><span>Chương nội dung</span></div>
+        <div class="stat"><strong>2</strong><span>Tình huống nhóm</span></div>
+        <div class="stat"><strong>3</strong><span>Mốc xu hướng</span></div>
+      </div>
+    </div>
+    <div class="panel dark">
+      <h2>Thông điệp chính</h2>
+      <p>Học đại học cần tính tự chủ; làm CNTT cần tư duy rõ ràng và đạo đức nghề nghiệp. AI là công cụ hỗ trợ, người học vẫn phải kiểm chứng và chịu trách nhiệm với kết quả.</p>
+    </div>
+  </div>
+</div>
+
+<main class="container">
+<section class="section" id="chuong4">
+  <div class="section-head">
+    <div><div class="kicker">Chương 04 · Nhập môn ngành</div><h2 class="section-title">Học đại học & tư duy lập trình viên chuyên nghiệp</h2></div>
+    <p class="section-desc">Những kỹ năng nền tảng giúp sinh viên học tập chủ động, phối hợp hiệu quả và hình thành tác phong chuyên nghiệp.</p>
+  </div>
+  <div class="topic-grid">
+    <article class="card">
+      <div class="card-number">01</div><h3>Tự chủ trong học tập</h3>
+      <ul>
+        <li>Một tín chỉ tương đương 50 giờ học tập định mức; môn 3 tín chỉ khoảng 150 giờ.</li>
+        <li>Phần lớn thời gian dành cho tự học, đọc tài liệu, làm bài tập và nghiên cứu.</li>
+        <li>Sinh viên chủ động lập kế hoạch, theo dõi tiến độ và chịu trách nhiệm về kết quả học tập.</li>
+      </ul>
+    </article>
+    <article class="card">
+      <div class="card-number">02</div><h3>Phương pháp học tập hiệu quả</h3>
+      <ul>
+        <li>Đọc tài liệu kỹ thuật theo bốn bước: đọc lướt, đặt câu hỏi, đọc kỹ, tự tóm tắt.</li>
+        <li>Ghi chép Cornell: ghi từ khóa/câu hỏi, nội dung chính và phần tổng kết.</li>
+        <li>Quản lý thời gian bằng ma trận khẩn cấp–quan trọng, Pomodoro và Time-blocking.</li>
+      </ul>
+    </article>
+    <article class="card">
+      <div class="card-number">03</div><h3>Giao tiếp & làm việc nhóm</h3>
+      <ul>
+        <li>Email học thuật có tiêu đề rõ, lời chào phù hợp, nội dung cụ thể và chữ ký.</li>
+        <li>Phân công rõ người phụ trách, nhiệm vụ và thời hạn trên bảng chung.</li>
+        <li>Họp cập nhật đều đặn; trao đổi trực tiếp khi có vướng mắc; minh bạch đóng góp qua lịch sử công việc.</li>
+      </ul>
+    </article>
+    <article class="card">
+      <div class="card-number">04</div><h3>Tư duy lập trình viên chuyên nghiệp – Clean Code</h3>
+      <ul>
+        <li>Đặt tên biến và hàm có ý nghĩa, thể hiện đúng mục đích.</li>
+        <li>Hàm ngắn, tập trung làm một việc.</li>
+        <li>Áp dụng DRY – Don't Repeat Yourself, tránh lặp mã nguồn.</li>
+        <li>Dùng định dạng nhất quán, chú thích giải thích lý do; kiểm tra cả mã do AI sinh.</li>
+      </ul>
+    </article>
+    <article class="card">
+      <div class="card-number">05</div><h3>Thiết kế phần mềm & đạo đức nghề nghiệp</h3>
+      <ul>
+        <li>Làm quen SOLID, trước hết là Single Responsibility: một lớp chỉ nên có một lý do để thay đổi.</li>
+        <li>Bảo vệ dữ liệu cá nhân; không đưa thông tin nhạy cảm vào công cụ AI.</li>
+        <li>Tôn trọng bản quyền, kiểm tra giấy phép MIT, Apache 2.0, GNU GPL.</li>
+        <li>Giữ liêm chính học thuật, ghi nguồn và khai báo việc sử dụng AI theo yêu cầu.</li>
+      </ul>
+    </article>
+    <article class="card">
+      <div class="card-number">GHI NHỚ</div><h3>Tác phong chuyên nghiệp</h3>
+      <p>Không chỉ viết được chương trình, lập trình viên còn cần biết đọc hiểu, bảo trì, hợp tác, bảo vệ dữ liệu và giải thích được lựa chọn kỹ thuật của mình.</p>
+      <div class="note"><strong>Điểm cốt lõi:</strong> Mã nguồn được đọc và bảo trì nhiều lần; vì vậy tính dễ đọc, dễ hiểu và dễ thay đổi là tiêu chí quan trọng.</div>
+    </article>
+  </div>
+</section>
+
+<section class="section" id="case4">
+  <div class="section-head">
+    <div><div class="kicker">Vận dụng kiến thức · Chương 4</div><h2 class="section-title">Case nhóm: Còn 03 tiếng đến hạn nộp</h2></div>
+    <p class="section-desc">Tình huống giả định để vận dụng kỹ năng quản lý thời gian, giao tiếp và phối hợp nhóm.</p>
+  </div>
+  <div class="case">
+    <span class="case-label">Tình huống</span>
+    <h3>Nhóm còn 3 giờ để hoàn thành bài tập lập trình</h3>
+    <p>Một thành viên chưa hoàn thành phần việc; nhóm còn phải tích hợp mã nguồn, kiểm thử và hoàn thiện báo cáo. Mục tiêu là ưu tiên phần bắt buộc, phân công lại hợp lý và nộp sản phẩm đúng hạn.</p>
+    <div class="case-grid">
+      <div class="subcard">
+        <h4>1. Kế hoạch xử lý trong 3 giờ</h4>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Thời gian</th><th>Công việc</th></tr></thead>
+          <tbody>
+            <tr><td>0–15 phút</td><td>Họp nhanh, xác định phần thiếu và phân công lại.</td></tr>
+            <tr><td>15–90 phút</td><td>Hoàn thiện các phần việc; hỗ trợ thành viên đang gặp khó khăn.</td></tr>
+            <tr><td>90–120 phút</td><td>Tích hợp mã nguồn, chạy thử và sửa lỗi quan trọng.</td></tr>
+            <tr><td>120–150 phút</td><td>Hoàn thiện báo cáo, kiểm tra nội dung và minh chứng.</td></tr>
+            <tr><td>150–180 phút</td><td>Kiểm tra lần cuối, thống nhất phiên bản và nộp bài.</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+      <div class="subcard">
+        <h4>2. Xử lý thành viên trễ tiến độ</h4>
+        <ol class="steps">
+          <li>Trao đổi riêng để hiểu nguyên nhân và xác định phần việc còn thiếu.</li>
+          <li>Hỗ trợ kỹ thuật hoặc chia nhỏ nhiệm vụ để thành viên có thể hoàn thành.</li>
+          <li>Nếu không kịp, thống nhất chuyển giao phần việc quan trọng cho thành viên khác.</li>
+          <li>Ghi nhận minh bạch đóng góp; nếu cần gia hạn, nhóm trưởng báo giảng viên sớm, nêu lý do và tiến độ thực tế.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="note"><strong>Kết luận tình huống:</strong> Ưu tiên hoàn thành chức năng cốt lõi, giao tiếp thẳng thắn, phân công rõ ràng và không che giấu tình trạng công việc.</div>
+  </div>
+</section>
+
+<section class="section" id="chuong5">
+  <div class="section-head">
+    <div><div class="kicker">Chương 05 · Nhập môn ngành</div><h2 class="section-title">AI tạo sinh & kỹ thuật viết prompt</h2></div>
+    <p class="section-desc">Hiểu cách AI tạo sinh hoạt động ở mức nhập môn, lựa chọn công cụ phù hợp và sử dụng AI an toàn trong học tập.</p>
+  </div>
+  <div class="topic-grid">
+    <article class="card">
+      <div class="card-number">01</div><h3>AI tạo sinh và LLM</h3>
+      <ul>
+        <li>AI tạo sinh có thể tạo văn bản, hình ảnh, âm thanh và mã nguồn.</li>
+        <li>LLM là mô hình ngôn ngữ lớn, sinh nội dung dựa trên xác suất và ngữ cảnh.</li>
+        <li>Câu trả lời có thể trôi chảy nhưng vẫn sai hoặc tạo thông tin không có thật; cần kiểm chứng.</li>
+      </ul>
+    </article>
+    <article class="card">
+      <div class="card-number">02</div><h3>Lựa chọn công cụ AI</h3>
+      <ul>
+        <li>ChatGPT, Gemini, Claude: hỏi đáp, giải thích và hỗ trợ công việc.</li>
+        <li>Microsoft Copilot: hỗ trợ trong hệ sinh thái Microsoft.</li>
+        <li>NotebookLM: hỏi đáp dựa trên tài liệu người dùng cung cấp.</li>
+        <li>Perplexity: tìm kiếm thông tin trên web và hiển thị nguồn tham khảo.</li>
+      </ul>
+      <div class="note">Không có công cụ tốt nhất cho mọi việc. Với câu hỏi quan trọng, có thể đối chiếu kết quả từ hai công cụ và kiểm tra nguồn.</div>
+    </article>
+    <article class="card">
+      <div class="card-number">03</div><h3>An toàn tài khoản & dữ liệu</h3>
+      <ul>
+        <li>Truy cập đúng website/ứng dụng chính thức và đọc điều khoản độ tuổi.</li>
+        <li>Dùng mật khẩu mạnh, không tái sử dụng; bật xác minh hai bước (2FA).</li>
+        <li>Không chia sẻ tài khoản; đăng xuất trên máy tính công cộng.</li>
+        <li>Không nhập căn cước, mật khẩu, thông tin ngân hàng, dữ liệu cá nhân của người khác hoặc dữ liệu mật.</li>
+        <li>Xóa/ẩn danh thông tin trước khi đưa tài liệu cần phân tích lên công cụ AI.</li>
+      </ul>
+    </article>
+    <article class="card">
+      <div class="card-number">04</div><h3>Kỹ thuật viết prompt</h3>
+      <ul>
+        <li>Viết rõ ràng, cụ thể; xác định mục tiêu; cung cấp ngữ cảnh.</li>
+        <li>Nhiệm vụ phức tạp nên có năm thành phần: Vai trò, Bối cảnh, Nhiệm vụ, Ràng buộc, Định dạng.</li>
+        <li>Chia câu hỏi lớn thành các câu hỏi nhỏ theo trình tự.</li>
+        <li>Nêu rõ đầu ra mong muốn: bảng, danh sách, số từ hoặc ví dụ.</li>
+      </ul>
+    </article>
+    <article class="card">
+      <div class="card-number">05</div><h3>Dùng AI như gia sư cá nhân</h3>
+      <ul>
+        <li>Hỏi nối tiếp để mở rộng và đào sâu nội dung.</li>
+        <li>Yêu cầu giải thích cùng khái niệm theo nhiều cấp độ.</li>
+        <li>Nhờ lập kế hoạch học tập rồi tự điều chỉnh theo lịch và năng lực.</li>
+        <li>Với bài tập, yêu cầu câu hỏi gợi mở thay vì đáp án hoàn chỉnh.</li>
+      </ul>
+    </article>
+    <article class="card">
+      <div class="card-number">GHI NHỚ</div><h3>AI hỗ trợ, người học chịu trách nhiệm</h3>
+      <p>Không sao chép nguyên văn câu trả lời. Cần đọc, kiểm tra, đối chiếu tài liệu, chỉnh sửa bằng hiểu biết của mình và thực hiện yêu cầu khai báo việc sử dụng AI.</p>
+      <div class="note"><strong>Nguyên tắc:</strong> Dùng AI để hiểu và tự làm được bài tương tự, không dùng AI để thay thế quá trình học.</div>
+    </article>
+  </div>
+</section>
+
+<section class="section" id="case5">
+  <div class="section-head">
+    <div><div class="kicker">Vận dụng kiến thức · Chương 5</div><h2 class="section-title">Case nhóm: Ứng dụng hỗ trợ tân sinh viên</h2></div>
+    <p class="section-desc">Thiết kế ý tưởng ứng dụng học tập và thực hành viết prompt theo cấu trúc năm thành phần.</p>
+  </div>
+  <div class="case">
+    <span class="case-label">Tình huống</span>
+    <h3>Khoa cần ứng dụng hỗ trợ sinh viên năm nhất</h3>
+    <p>Ứng dụng hướng đến các nhu cầu: quản lý lịch học, tra cứu thông tin học tập, giải đáp thắc mắc và tìm hoạt động ngoại khóa. Thiết kế cần dễ dùng và chú trọng bảo vệ dữ liệu.</p>
+    <div class="case-grid">
+      <div class="subcard">
+        <h4>1. Prompt mẫu theo 5 thành phần</h4>
+        <div class="promptbox" id="promptText"><strong>Vai trò:</strong> Bạn là chuyên gia phân tích và thiết kế ứng dụng giáo dục.
+
+<strong>Bối cảnh:</strong> Tôi cần xây dựng ứng dụng hỗ trợ tân sinh viên ngành CNTT.
+
+<strong>Nhiệm vụ:</strong> Đề xuất chức năng quản lý thời khóa biểu, nhắc lịch học, tra cứu thông tin, giải đáp câu hỏi và tìm hoạt động ngoại khóa.
+
+<strong>Ràng buộc:</strong> Giao diện đơn giản, dễ sử dụng; bảo vệ dữ liệu cá nhân; không yêu cầu mật khẩu hoặc thông tin nhạy cảm.
+
+<strong>Định dạng:</strong> Trình bày dạng bảng gồm tên chức năng, mô tả, lợi ích và lưu ý an toàn dữ liệu.</div>
+        <button class="copy-btn" onclick="copyPrompt()">Sao chép prompt</button>
+        <span id="copyStatus" aria-live="polite" style="font-size:.82rem;margin-left:8px;color:#617286"></span>
+      </div>
+      <div class="subcard">
+        <h4>2. Thử nghiệm và kiểm chứng</h4>
+        <ol class="steps">
+          <li>Nhập cùng một prompt vào hai công cụ, ví dụ ChatGPT và Gemini.</li>
+          <li>So sánh mức độ đầy đủ, dễ hiểu, phù hợp nhu cầu và tính khả thi.</li>
+          <li>Kiểm tra lại các thông tin quan trọng bằng tài liệu/nguồn đáng tin cậy.</li>
+          <li>Chọn ý tưởng phù hợp, chỉnh sửa theo yêu cầu thực tế; không mặc định AI luôn đúng.</li>
+        </ol>
+      </div>
+    </div>
+    <div style="margin-top:18px">
+      <h4 style="color:var(--navy);margin-bottom:10px">3. Năm quy tắc an toàn dữ liệu</h4>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Quy tắc</th><th>Cách thực hiện</th></tr></thead>
+        <tbody>
+          <tr><td>Không thu thập dữ liệu nhạy cảm</td><td>Không yêu cầu mật khẩu, số căn cước hoặc thông tin ngân hàng.</td></tr>
+          <tr><td>Tôn trọng quyền riêng tư</td><td>Không công khai thông tin cá nhân của sinh viên khác.</td></tr>
+          <tr><td>Thu thập tối thiểu</td><td>Chỉ lấy dữ liệu thật sự cần cho chức năng ứng dụng.</td></tr>
+          <tr><td>Dùng dữ liệu giả khi thử nghiệm</td><td>Không đưa danh sách sinh viên thật vào bản thử nghiệm.</td></tr>
+          <tr><td>Kiểm soát truy cập</td><td>Phân quyền phù hợp, bảo vệ tài khoản và kiểm tra cài đặt riêng tư.</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="xuhuong">
+  <div class="section-head">
+    <div><div class="kicker">Góc nhìn tương lai</div><h2 class="section-title">Xu hướng 3 năm · 5 năm · 10 năm</h2></div>
+    <p class="section-desc">Các ý dưới đây là định hướng thảo luận và suy luận phục vụ bài trình bày, không phải số liệu dự báo chắc chắn trong giáo trình.</p>
+  </div>
+  <h3 style="color:var(--navy);margin:0 0 13px">Từ Chương 4 – Kỹ năng và nghề nghiệp CNTT</h3>
+  <div class="trend-grid">
+    <article class="trend"><div class="year">Xu hướng · 3 năm</div><h3>Học tập có AI hỗ trợ</h3><p>Sinh viên dùng AI để học và hỗ trợ lập trình; cần biết đọc hiểu, kiểm tra và chỉnh sửa mã nguồn.</p></article>
+    <article class="trend"><div class="year">Xu hướng · 5 năm</div><h3>Làm việc cộng tác</h3><p>Kỹ năng giao tiếp, quản lý dự án, review mã và phối hợp cùng công cụ AI ngày càng quan trọng.</p></article>
+    <article class="trend"><div class="year">Xu hướng · 10 năm</div><h3>Kỹ sư chịu trách nhiệm hệ thống</h3><p>Vai trò con người tập trung nhiều hơn vào thiết kế, giám sát, bảo mật, đạo đức và quyết định kỹ thuật.</p></article>
+  </div>
+  <h3 style="color:var(--navy);margin:26px 0 13px">Từ Chương 5 – AI tạo sinh và kỹ thuật prompt</h3>
+  <div class="trend-grid">
+    <article class="trend"><div class="year">Xu hướng · 3 năm</div><h3>Trợ lý AI và AI Agent</h3><p>AI có thể hỗ trợ nhiều bước trong tra cứu, lập kế hoạch và xử lý công việc học tập.</p></article>
+    <article class="trend"><div class="year">Xu hướng · 5 năm</div><h3>Thiết kế quy trình AI</h3><p>Biết viết prompt, kết hợp công cụ và kiểm chứng đầu ra trở thành năng lực hữu ích trong nhiều ngành.</p></article>
+    <article class="trend"><div class="year">Xu hướng · 10 năm</div><h3>AI có giám sát</h3><p>Con người tiếp tục giữ vai trò giám sát, bảo đảm minh bạch, an toàn dữ liệu và chịu trách nhiệm.</p></article>
+  </div>
+  <div class="takeaway">
+    <h3>Kết luận chung</h3>
+    <p>Để trở thành sinh viên và lập trình viên chuyên nghiệp, cần kết hợp ba năng lực: <strong>tự học suốt đời</strong>, <strong>tư duy giải quyết vấn đề</strong> và <strong>sử dụng AI có trách nhiệm</strong>. Công nghệ thay đổi nhanh, nhưng khả năng học hỏi, kiểm chứng và đạo đức nghề nghiệp vẫn là nền tảng.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="source">
+    <strong>Nguồn tham khảo chính:</strong> Giáo trình <em>Nhập môn Công nghệ Thông tin</em>, Chương 4 và Chương 5, tài liệu học phần do người học cung cấp. Nội dung tình huống và phần xu hướng được trình bày dưới dạng vận dụng/định hướng thảo luận dựa trên các chủ đề trong giáo trình.
+  </div>
+</section>
+</main>
+<footer>
+  <strong>BÀI TRÌNH BÀY NHẬP MÔN NGÀNH CNTT</strong><br>
+  Chương 4: Học đại học & tư duy lập trình viên chuyên nghiệp · Chương 5: AI tạo sinh & kỹ thuật viết prompt
+</footer>
+<script>
+function copyPrompt(){
+  const text = document.getElementById('promptText').innerText;
+  const status = document.getElementById('copyStatus');
+  if(navigator.clipboard && window.isSecureContext){
+    navigator.clipboard.writeText(text).then(()=>status.textContent='Đã sao chép!').catch(()=>status.textContent='Không sao chép được trên trình duyệt này.');
+  }else{
+    const area=document.createElement('textarea'); area.value=text; document.body.appendChild(area); area.select();
+    try{document.execCommand('copy');status.textContent='Đã sao chép!';}catch(e){status.textContent='Hãy chọn và sao chép thủ công.';}
+    area.remove();
+  }
+}
+</script>
+</body>
+</html>
